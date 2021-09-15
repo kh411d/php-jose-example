@@ -55,7 +55,10 @@ $payload = json_encode([
 $jws = $jwsBuilder
     ->create()                               // We want to create a new JWS
     ->withPayload($payload)                  // We set the payload
-    ->addSignature($jwkSIG, ['alg' => 'HS256','cty' => 'JWT']) // We add a signature with a simple protected header
+    ->addSignature($jwkSIG, [
+        'alg' => 'HS256', // Signature Algorithm
+        'cty' => 'JWT'    // cty header
+    ]) 
     ->build();
 
 $serializer = new JWSCompactSerializer(); // The serializer
@@ -98,7 +101,7 @@ $jwe = $jweBuilder
     ->withSharedProtectedHeader([
         'alg' => 'dir',        // Key Encryption Algorithm
         'enc' => 'A128GCM', // Content Encryption Algorithm
-        'cty' => 'JWT'
+        'cty' => 'JWT'     //cty header
     ])
     ->addRecipient($jwkENC)    // We add a recipient (a shared key or public key).
     ->build();      
