@@ -6,7 +6,7 @@ Run composer
 % composer install
 ```
 
-Run jws.php from cli
+Run jws_in_jwe.php from cli
 ```
-% php ./jws.php
+% php ./jws_in_jwe.php
 ```

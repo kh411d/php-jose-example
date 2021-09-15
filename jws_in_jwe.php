@@ -16,6 +16,10 @@ use Jose\Component\Encryption\JWEBuilder;
 use Jose\Component\Signature\Serializer\CompactSerializer as JWSCompactSerializer;
 use Jose\Component\Encryption\Serializer\CompactSerializer as JWECompactSerializer;
 
+
+$SIGNATURE_KEY = "mednetsecretrecipe2021";
+$ENCRYPTER_KEY = "MKyKFfaVc7LUonGB";
+
 // The algorithm manager with the HS256 algorithm.
 $algorithmManager = new AlgorithmManager([
     new HS256(),
@@ -23,7 +27,7 @@ $algorithmManager = new AlgorithmManager([
 
 
 $jwkSIG = JWKFactory::createFromSecret(
-    str_pad("mednetsecretrecipe2021", 32, "\00")
+    str_pad($SIGNATURE_KEY, 32, "\00")
 );
 
 // We instantiate our JWS Builder.
@@ -85,7 +89,7 @@ $jweBuilder = new JWEBuilder(
 
 
 $jwkENC = JWKFactory::createFromSecret(
-    'MKyKFfaVc7LUonGB'
+    $ENCRYPTER_KEY
 );
 
 $jwe = $jweBuilder
